@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/assets_manager.dart';
-import '../../../../../core/resources/colors.dart';
-import '../../../../../core/resources/string_manager.dart';
-import '../../../../../core/resources/text_styles.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/assets_manager.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/string_manager.dart';
+import '../../../../../core/utils/text_styles.dart';
+import '../../../../../core/utils/value_manager.dart';
 
 class authImageTitle extends StatelessWidget {
   const authImageTitle({super.key, required this.heigth});

@@ -1,4 +1,4 @@
-import 'package:bookapp/core/resources/value_manager.dart';
+import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../constants.dart';
@@ -39,10 +39,12 @@ TextStyle textStyle50({double fontsize = AppSize.s50, required Color color}) {
 TextStyle textStyle14({double fontsize = AppSize.s14, required Color color}) {
   return _getTextStyle(fontsize, FontWeight.w900, color);
 }
+
 // -------------------------- 12 --------------------------//
 TextStyle textStyle12({double fontsize = AppSize.s12, required Color color}) {
   return _getTextStyle(fontsize, FontWeight.normal, color);
 }
+
 // -------------------------- 10 --------------------------
 TextStyle textStyle10({double fontsize = AppSize.s10, required Color color}) {
   return _getTextStyle(fontsize, FontWeight.normal, color);

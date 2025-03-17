@@ -1,13 +1,13 @@
-import 'package:bookapp/core/resources/app_routes.dart';
-import 'package:bookapp/core/resources/assets_manager.dart';
-import 'package:bookapp/core/resources/colors.dart';
-import 'package:bookapp/core/resources/string_manager.dart';
-import 'package:bookapp/core/resources/text_styles.dart';
-import 'package:bookapp/core/resources/value_manager.dart';
+import 'package:bookapp/core/utils/assets_manager.dart';
+import 'package:bookapp/core/utils/colors.dart';
+import 'package:bookapp/core/utils/string_manager.dart';
+import 'package:bookapp/core/utils/text_styles.dart';
+import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:bookapp/features/auth/presentation/view/widgets/rowTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/app_routes.dart';
 import 'auth_image_title.dart';
 import 'container_login_textformfield.dart';
 
@@ -46,4 +46,3 @@ class LoginViewBody extends StatelessWidget {
     );
   }
 }
-

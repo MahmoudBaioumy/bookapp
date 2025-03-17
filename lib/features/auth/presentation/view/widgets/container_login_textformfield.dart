@@ -1,12 +1,12 @@
-import 'package:bookapp/core/resources/string_manager.dart';
-import 'package:bookapp/core/resources/text_styles.dart';
+import 'package:bookapp/core/utils/string_manager.dart';
+import 'package:bookapp/core/utils/text_styles.dart';
 import 'package:bookapp/core/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/resources/app_routes.dart';
-import '../../../../../core/resources/colors.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/app_routes.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/value_manager.dart';
 import '../../../../../core/widgets/custom_elevated_button.dart';
 
 class containerLoginTextformField extends StatefulWidget {
@@ -66,7 +66,7 @@ class _containerLoginTextformFieldState
             customElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) ;
-                GoRouter.of(context).push(AppRouter.KHomeView);
+                GoRouter.of(context).push(AppRouter.kbottomnavView);
               },
               text: StringsManager.Login,
             ),

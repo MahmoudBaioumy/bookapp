@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/assets_manager.dart';
-import '../../../../../core/resources/colors.dart';
-import '../../../../../core/resources/text_styles.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/assets_manager.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/text_styles.dart';
+import '../../../../../core/utils/value_manager.dart';
 
 class homeListViewBody extends StatelessWidget {
   const homeListViewBody({
@@ -20,12 +20,12 @@ class homeListViewBody extends StatelessWidget {
 
   final double heigth;
   final double weidth;
-  final String image;
-  final String bookName;
-  final String type;
-  final String sallaryBeforeDiss;
-  final String sallaryAftarDiss;
-  final String diss;
+  final String? image;
+  final String? bookName;
+  final String? type;
+  final String? sallaryBeforeDiss;
+  final String? sallaryAftarDiss;
+  final String? diss;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class homeListViewBody extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppSize.s10),
                 image: DecorationImage(
-                  image: AssetImage(image),
+                  image: NetworkImage(image ?? ''),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -56,7 +56,7 @@ class homeListViewBody extends StatelessWidget {
               child: Center(
                 child: Expanded(
                   child: Text(
-                    diss,
+                    diss ?? '',
                     style: textStyle10(
                       color: ColorsManager.white1color,
                       fontsize: 14,
@@ -72,7 +72,7 @@ class homeListViewBody extends StatelessWidget {
           height: heigth * 0.055,
           width: weidth * 0.3,
           child: Text(
-            bookName,
+            bookName ?? '',
             maxLines: 2,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
@@ -82,7 +82,7 @@ class homeListViewBody extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSize.s28),
           child: Text(
-            type,
+            type ?? '',
             style: textStyle18(color: ColorsManager.greycolor, fontsize: 16),
             textAlign: TextAlign.center,
           ),
@@ -90,7 +90,7 @@ class homeListViewBody extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSize.s28),
           child: Text(
-            sallaryBeforeDiss,
+            sallaryBeforeDiss ?? '',
             style: TextStyle(
               decoration: TextDecoration.lineThrough,
               decorationColor: ColorsManager.greycolor,
@@ -102,7 +102,7 @@ class homeListViewBody extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSize.s28),
           child: Text(
-            sallaryAftarDiss,
+            sallaryAftarDiss ?? "",
             style: textStyle18(color: ColorsManager.bluecolor, fontsize: 15),
           ),
         ),

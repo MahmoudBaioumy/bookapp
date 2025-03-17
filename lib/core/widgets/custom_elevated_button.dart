@@ -1,9 +1,9 @@
-import 'package:bookapp/core/resources/value_manager.dart';
+import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:flutter/material.dart';
 
-import '../resources/colors.dart';
-import '../resources/string_manager.dart';
-import '../resources/text_styles.dart';
+import '../utils/colors.dart';
+import '../utils/string_manager.dart';
+import '../utils/text_styles.dart';
 
 class customElevatedButton extends StatelessWidget {
   const customElevatedButton({

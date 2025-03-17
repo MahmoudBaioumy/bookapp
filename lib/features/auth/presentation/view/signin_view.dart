@@ -6,8 +6,6 @@ class SigninView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: signinViewBody(),
-    );
+    return Scaffold(body: signinViewBody());
   }
 }

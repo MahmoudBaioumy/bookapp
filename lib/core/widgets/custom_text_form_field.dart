@@ -10,7 +10,7 @@ class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
     Key? key,
     required this.hintText,
-     this.prefixIcon,
+    this.prefixIcon,
     this.isPassword = false,
     this.controller,
     this.validator,

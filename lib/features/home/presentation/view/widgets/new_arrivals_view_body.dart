@@ -1,8 +1,8 @@
 import 'package:bookapp/features/home/presentation/view/widgets/custom_container_new_arrivals_list_vew.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/string_manager.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/string_manager.dart';
+import '../../../../../core/utils/value_manager.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 
 class NewArrivalsViewBody extends StatelessWidget {

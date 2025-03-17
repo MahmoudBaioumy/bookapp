@@ -1,6 +1,6 @@
-import 'package:bookapp/core/resources/colors.dart';
-import 'package:bookapp/core/resources/string_manager.dart';
-import 'package:bookapp/core/resources/text_styles.dart';
+import 'package:bookapp/core/utils/colors.dart';
+import 'package:bookapp/core/utils/string_manager.dart';
+import 'package:bookapp/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class SlidingText extends StatelessWidget {

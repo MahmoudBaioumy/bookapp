@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../resources/colors.dart';
-import '../resources/text_styles.dart';
-import '../resources/value_manager.dart';
+import '../utils/colors.dart';
+import '../utils/text_styles.dart';
+import '../utils/value_manager.dart';
 
 class CustomColumnTextListView extends StatelessWidget {
   const CustomColumnTextListView({
@@ -33,7 +33,7 @@ class CustomColumnTextListView extends StatelessWidget {
             width: weidth * 0.3,
             child: Text(
               bookname,
-           //   '',
+              //   '',
               maxLines: 2,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,

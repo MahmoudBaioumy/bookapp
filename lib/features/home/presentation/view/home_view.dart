@@ -1,13 +1,14 @@
 import 'package:bookapp/features/home/presentation/view/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+import '../../data/models/best_seller_model.dart/best_seller_model.dart' as bs;
 
-  @override
+class HomeView extends StatelessWidget {
+  HomeView({super.key});
+
+  bs.BestSellerModel bestsellerModel = bs.BestSellerModel();
+
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: homeViewBody(),
-    );
+    return Scaffold(body: homeViewBody());
   }
 }

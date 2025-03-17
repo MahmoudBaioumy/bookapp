@@ -1,6 +1,6 @@
-import 'package:bookapp/core/resources/colors.dart';
-import 'package:bookapp/core/resources/text_styles.dart';
-import 'package:bookapp/core/resources/value_manager.dart';
+import 'package:bookapp/core/utils/colors.dart';
+import 'package:bookapp/core/utils/text_styles.dart';
+import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -15,17 +15,19 @@ class NavBarView extends StatefulWidget {
   @override
   State<NavBarView> createState() => _NavBarViewState();
 }
- int _selectedIndex = 0;
- final List _pages = [
-  const HomeView(),
+
+int _selectedIndex = 0;
+final List _pages = [
+  HomeView(),
   const CartView(),
   const WishistView(),
   const ProfileView(),
 ];
+
 class _NavBarViewState extends State<NavBarView> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
@@ -36,10 +38,7 @@ class _NavBarViewState extends State<NavBarView> {
             topRight: Radius.circular(20),
           ),
           boxShadow: [
-            BoxShadow(
-              blurRadius: 20,
-              color: Colors.black.withOpacity(.2),
-            ),
+            BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.2)),
           ],
         ),
         child: GNav(
@@ -54,7 +53,7 @@ class _NavBarViewState extends State<NavBarView> {
           duration: const Duration(milliseconds: 400),
           tabBackgroundColor: ColorsManager.bluecolor,
           textStyle: textStyle18(color: ColorsManager.white1color),
-          tabs:  [
+          tabs: [
             GButton(
               iconSize: 28,
               icon: Icons.home,

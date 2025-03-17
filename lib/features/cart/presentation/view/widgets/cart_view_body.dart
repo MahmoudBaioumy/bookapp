@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/assets_manager.dart';
-import '../../../../../core/resources/colors.dart';
-import '../../../../../core/resources/string_manager.dart';
-import '../../../../../core/resources/text_styles.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/assets_manager.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/string_manager.dart';
+import '../../../../../core/utils/text_styles.dart';
+import '../../../../../core/utils/value_manager.dart';
 import '../../../../../core/widgets/custom_Image_List_view.dart';
 import 'custom_container_cart.dart';
 
@@ -29,9 +29,8 @@ class CartViewBody extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(AppPadding.p10),
         child: ListView.separated(
-          itemBuilder:
-          (context, index) {
-            return  CustomContainerCart(heigth: heigth, width: width);
+          itemBuilder: (context, index) {
+            return CustomContainerCart(heigth: heigth, width: width);
           },
           separatorBuilder: (context, index) => SizedBox(height: AppSize.s10),
           itemCount: 2,

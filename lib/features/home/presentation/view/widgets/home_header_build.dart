@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/assets_manager.dart';
-import '../../../../../core/resources/colors.dart';
-import '../../../../../core/resources/string_manager.dart';
-import '../../../../../core/resources/text_styles.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/assets_manager.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/string_manager.dart';
+import '../../../../../core/utils/text_styles.dart';
+import '../../../../../core/utils/value_manager.dart';
 
 class homeHeaderbuild extends StatelessWidget {
-  const homeHeaderbuild({
-    super.key,
-  });
+  const homeHeaderbuild({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,10 @@ class homeHeaderbuild extends StatelessWidget {
             ),
             Text(
               StringsManager.homeheader,
-              style: textStyle19(color: ColorsManager.greycolor,fontsize: AppSize.s16),
+              style: textStyle19(
+                color: ColorsManager.greycolor,
+                fontsize: AppSize.s16,
+              ),
             ),
           ],
         ),
@@ -46,11 +47,11 @@ class homeHeaderbuild extends StatelessWidget {
               foregroundColor: ColorsManager.blackcolor,
             ),
             CircleAvatar(
-                maxRadius: AppSize.s22,
-                backgroundImage:AssetImage(AssetsManager.User)
+              maxRadius: AppSize.s22,
+              backgroundImage: AssetImage(AssetsManager.User),
             ),
           ],
-        )
+        ),
       ],
     );
   }

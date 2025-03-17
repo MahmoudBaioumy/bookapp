@@ -1,5 +1,5 @@
-import 'package:bookapp/core/resources/text_styles.dart';
-import 'package:bookapp/core/resources/value_manager.dart';
+import 'package:bookapp/core/utils/text_styles.dart';
+import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
@@ -48,6 +48,7 @@ ThemeData getAppTheme() {
     ///=== input decoration theme(TextForm Filed) =====================================================///
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: ColorsManager.bluecolor,
+
       ///content padding
       contentPadding: const EdgeInsets.all(AppPadding.p16),
       //== hint Style ==//

@@ -1,4 +1,4 @@
-import 'package:bookapp/core/resources/colors.dart';
+import 'package:bookapp/core/utils/colors.dart';
 import 'package:bookapp/features/splash/presentation/view/widgets/splashviewbody.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,7 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: ColorsManager.bluecolor,
       body: SplashViewbody(),
     );

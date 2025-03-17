@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../resources/colors.dart';
-import '../resources/text_styles.dart';
-import '../resources/value_manager.dart';
+import '../utils/colors.dart';
+import '../utils/text_styles.dart';
+import '../utils/value_manager.dart';
 
 class CustomImageListView extends StatelessWidget {
   const CustomImageListView({

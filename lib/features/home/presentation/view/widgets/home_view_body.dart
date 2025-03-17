@@ -1,9 +1,9 @@
-import 'package:bookapp/core/resources/app_routes.dart';
-import 'package:bookapp/core/resources/string_manager.dart';
-import 'package:bookapp/core/resources/value_manager.dart';
+import 'package:bookapp/core/utils/string_manager.dart';
+import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../core/resources/assets_manager.dart';
+import '../../../../../core/utils/app_routes.dart';
+import '../../../../../core/utils/assets_manager.dart';
 import 'home_list_view_body.dart';
 import 'category_body_build.dart';
 import 'home_header_build.dart';
@@ -19,7 +19,7 @@ class homeViewBody extends StatelessWidget {
     var weidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           horizontal: AppPadding.p16,
           vertical: AppPadding.p16,
         ),

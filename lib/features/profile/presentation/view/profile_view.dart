@@ -1,3 +1,4 @@
+import 'package:bookapp/features/profile/presentation/view/widgets/profile_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -5,6 +6,6 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ProfileViewBody();
   }
 }

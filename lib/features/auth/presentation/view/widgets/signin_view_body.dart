@@ -2,11 +2,10 @@ import 'package:bookapp/features/auth/presentation/view/widgets/rowTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/resources/app_routes.dart';
-import '../../../../../core/resources/string_manager.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/app_routes.dart';
+import '../../../../../core/utils/string_manager.dart';
+import '../../../../../core/utils/value_manager.dart';
 import 'auth_image_title.dart';
-import 'container_login_textformfield.dart';
 import 'container_singin_textformfield.dart';
 
 class signinViewBody extends StatelessWidget {

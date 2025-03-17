@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/resources/assets_manager.dart';
-import '../../../../../core/resources/colors.dart';
-import '../../../../../core/resources/text_styles.dart';
-import '../../../../../core/resources/value_manager.dart';
+import '../../../../../core/utils/assets_manager.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/value_manager.dart';
 import '../../../../../core/widgets/custom_Image_List_view.dart';
 import '../../../../../core/widgets/custom_column_text_list_view.dart';
 
@@ -40,15 +38,6 @@ class CustomWishistViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: width * 0.45,
-                  child: Text(
-                    'Algorithm Programming',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: textStyle16(color: ColorsManager.blackcolor),
-                  ),
-                ),
                 CustomColumnTextListView(
                   heigth: heigth,
                   weidth: width,
@@ -60,7 +49,7 @@ class CustomWishistViewBody extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: width * 0.06),
+          SizedBox(width: width * 0.18),
           Column(
             children: [
               IconButton(

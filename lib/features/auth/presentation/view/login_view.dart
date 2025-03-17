@@ -1,4 +1,3 @@
-import 'package:bookapp/core/resources/colors.dart';
 import 'package:bookapp/features/auth/presentation/view/widgets/login_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +6,6 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-        body: LoginViewBody());
+    return Scaffold(body: LoginViewBody());
   }
 }

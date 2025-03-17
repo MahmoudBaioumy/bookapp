@@ -32,7 +32,8 @@ abstract class AppRouter {
       GoRoute(
         path: kbestSellerView,
         builder: (context, state) => BestSellerView(),
-      ),GoRoute(
+      ),
+      GoRoute(
         path: kNewArrivalsView,
         builder: (context, state) => NewArrivalsView(),
       ),
