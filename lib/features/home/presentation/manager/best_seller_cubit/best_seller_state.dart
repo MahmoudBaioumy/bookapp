@@ -13,7 +13,7 @@ class BestSellerSuccessState extends BestSellerState {
 }
 
 class BestSellerFailureState extends BestSellerState {
-  final String errMassge;
+  final String errMassage;
 
-  BestSellerFailureState(this.errMassge);
+  BestSellerFailureState(this.errMassage);
 }

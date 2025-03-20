@@ -46,25 +46,25 @@ class homeListViewBody extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: 23,
-              width: 35,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppSize.s6),
-                color: ColorsManager.bluecolor,
-              ),
-              child: Center(
-                child: Expanded(
-                  child: Text(
-                    diss ?? '',
-                    style: textStyle10(
-                      color: ColorsManager.white1color,
-                      fontsize: 14,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Container(
+            //   height: 23,
+            //   width: 35,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(AppSize.s6),
+            //     color: ColorsManager.bluecolor,
+            //   ),
+            //   child: Center(
+            //     child: Expanded(
+            //       child: Text(
+            //         diss ?? '',
+            //         style: textStyle10(
+            //           color: ColorsManager.white1color,
+            //           fontsize: 14,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         SizedBox(height: AppSize.s6),

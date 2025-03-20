@@ -1,15 +1,17 @@
 import 'package:bookapp/core/utils/string_manager.dart';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 abstract class Failure {
   final String errMessage;
 
-  Failure(this.errMessage);
+  const Failure(this.errMessage);
 }
 
 class ServerFailure extends Failure {
   ServerFailure(super.errMessage);
 
+  // ========================== 🔥in this factory check the Error who come from Dio Error 🔥 ========================== //
   factory ServerFailure.fromDioError(DioError dioError) {
     switch (dioError.type) {
       // -------------------------- connectionTimeout --------------------------//
@@ -50,7 +52,7 @@ class ServerFailure extends Failure {
   // ========================== 🔥 handling server error 🔥 ========================== //
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return (response['error']['message']);
+      return (response['message']);
     } else if (statusCode == 404) {
       return ServerFailure(StringsManager.state404);
     } else if (statusCode == 500) {
