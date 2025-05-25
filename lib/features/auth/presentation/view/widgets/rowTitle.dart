@@ -1,7 +1,6 @@
 import 'package:bookapp/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/string_manager.dart';
 import '../../../../../core/utils/text_styles.dart';
 
 class RowTitle extends StatelessWidget {

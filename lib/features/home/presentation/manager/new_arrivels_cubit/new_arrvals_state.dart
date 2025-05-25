@@ -9,9 +9,9 @@ final class NewArrivalsLoading extends NewArrivalsState {}
 
 // -------------------------- we use List to return the data because we only take this data and but it in the list  -------------------------- //
 final class NewArrivalsSuccess extends NewArrivalsState {
-  final List<NewArrivalsModel> NewArrivalsbooks;
+  final NewArrivalsModel Books;
 
-  NewArrivalsSuccess(this.NewArrivalsbooks);
+  NewArrivalsSuccess(this.Books);
 }
 
 final class NewArrivalsFailure extends NewArrivalsState {

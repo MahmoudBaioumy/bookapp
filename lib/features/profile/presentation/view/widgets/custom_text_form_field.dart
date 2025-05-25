@@ -24,7 +24,7 @@ class TextFormFiledProfile extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         hintText: name,
-        hintStyle: TextStyle(color: Colors.grey, fontSize: AppSize.s14),
+        hintStyle: TextStyle(color: Colors.black, fontSize: AppSize.s14),
         prefixIcon: icon,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(25)),

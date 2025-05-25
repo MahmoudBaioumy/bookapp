@@ -12,11 +12,22 @@ class CustomImageListView extends StatelessWidget {
     required this.Image,
     required this.diss,
   });
-
   final double heigth;
   final double weidth;
   final String Image;
   final String diss;
+  // -------------------------- factory for loading -------------------------- //
+  factory CustomImageListView.loading({
+    required double heigth,
+    required double weidth,
+  }) {
+    return CustomImageListView(
+      heigth: heigth,
+      weidth: weidth,
+      Image: '',
+      diss: '0%',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +40,14 @@ class CustomImageListView extends StatelessWidget {
           width: weidth * 0.25,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSize.s10),
-            image: DecorationImage(image: AssetImage(Image), fit: BoxFit.cover),
+            image:
+                Image.isNotEmpty
+                    ? DecorationImage(
+                      image: NetworkImage(Image),
+                      fit: BoxFit.cover,
+                    )
+                    : null,
+            color: Image.isEmpty ? Colors.grey : null,
           ),
         ),
         Container(
@@ -40,9 +58,10 @@ class CustomImageListView extends StatelessWidget {
             color: ColorsManager.bluecolor,
           ),
           child: Center(
-            child: Expanded(
+            child: SizedBox.expand(
               child: Text(
                 diss,
+                textAlign: TextAlign.center,
                 style: textStyle10(
                   color: ColorsManager.white1color,
                   fontsize: 14,

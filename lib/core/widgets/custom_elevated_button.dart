@@ -2,7 +2,6 @@ import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
-import '../utils/string_manager.dart';
 import '../utils/text_styles.dart';
 
 class customElevatedButton extends StatelessWidget {

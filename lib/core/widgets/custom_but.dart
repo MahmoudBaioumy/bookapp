@@ -1,5 +1,6 @@
 import 'package:bookapp/core/utils/colors.dart';
 import 'package:bookapp/core/utils/text_styles.dart';
+import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -16,6 +17,7 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.textStyle,
     this.isBorder = false,
+    this.fontsize,
   });
 
   final String text;
@@ -29,7 +31,7 @@ class CustomButton extends StatelessWidget {
   final double? radius;
   final TextStyle? textStyle;
   final Function() onPressed;
-
+final double? fontsize;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,7 +43,7 @@ class CustomButton extends StatelessWidget {
               isBorder == true
                   ? const BorderSide()
                   : const BorderSide(width: 0, color: Colors.transparent),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius??8)),
           backgroundColor: bgColor ?? ColorsManager.bluecolor,
           foregroundColor: fgColor ?? ColorsManager.white1color,
         ),
@@ -53,6 +55,7 @@ class CustomButton extends StatelessWidget {
               TextStyle(
                 color: textcolor ?? ColorsManager.white1color,
                 fontWeight: fontWeight ?? FontWeight.normal,
+                fontSize: fontsize ?? AppSize.s18
               ),
         ),
       ),

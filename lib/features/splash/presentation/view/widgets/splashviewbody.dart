@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/app_routes.dart';
 import '../../../../../core/utils/assets_manager.dart';
+import '../../../../../core/utils/storage/cache_helper.dart';
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({Key? key}) : super(key: key);
@@ -65,7 +66,13 @@ class _SplashViewbodyState extends State<SplashViewbody>
   // -------------------------- push to home -------------------------- //
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
-      GoRouter.of(context).push(AppRouter.kLoginView);
+      String token = CacheHelper().getToken;
+      if(token.isNotEmpty) {
+        print('corecct $token');
+        GoRouter.of(context).push(AppRouter.kbottomnavView);
+      }else{
+        GoRouter.of(context).push(AppRouter.kLoginView);
+      }
     });
   }
 }

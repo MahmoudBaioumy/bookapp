@@ -1,6 +1,7 @@
-import 'package:bookapp/core/utils/string_manager.dart';
-import 'package:dartz/dartz.dart';
+import 'package:bookapp/core/extension/translate.dart';
 import 'package:dio/dio.dart';
+
+import '../lang/string_language_manager.dart';
 
 abstract class Failure {
   final String errMessage;
@@ -16,16 +17,16 @@ class ServerFailure extends Failure {
     switch (dioError.type) {
       // -------------------------- connectionTimeout --------------------------//
       case DioExceptionType.connectionTimeout:
-        return ServerFailure(StringsManager.connectionTimeout);
+        return ServerFailure(AppStringsLanguage.connectionTimeout.trans());
       // -------------------------- sendTimeout --------------------------//
       case DioExceptionType.sendTimeout:
-        return ServerFailure(StringsManager.sendTimeout);
+        return ServerFailure(AppStringsLanguage.sendTimeout.trans());
       // -------------------------- receiveTimeout --------------------------//
       case DioExceptionType.receiveTimeout:
-        return ServerFailure(StringsManager.receiveTimeout);
+        return ServerFailure(AppStringsLanguage.receiveTimeout.trans());
       // -------------------------- badCertificate --------------------------//
       case DioExceptionType.badCertificate:
-        return ServerFailure(StringsManager.nornalmassege);
+        return ServerFailure(AppStringsLanguage.nornalmassege.trans());
       // -------------------------- badResponse --------------------------//
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
@@ -34,18 +35,18 @@ class ServerFailure extends Failure {
         );
       // -------------------------- cancel --------------------------//
       case DioExceptionType.cancel:
-        return ServerFailure(StringsManager.cancel);
+        return ServerFailure(AppStringsLanguage.cancel.trans());
       // -------------------------- connectionError -------------------------- //
       case DioExceptionType.connectionError:
-        return ServerFailure(StringsManager.connectionError);
+        return ServerFailure(AppStringsLanguage.connectionError.trans());
       // -------------------------- unknown -------------------------- //
       case DioExceptionType.unknown:
         if (dioError.message!.contains('SocketException')) {
-          return ServerFailure(StringsManager.unknown);
+          return ServerFailure(AppStringsLanguage.unknown.trans());
         }
-        return ServerFailure(StringsManager.nornalmassege2);
+        return ServerFailure(AppStringsLanguage.nornalmassege2.trans());
       default:
-        return ServerFailure(StringsManager.nornalmassege);
+        return ServerFailure(AppStringsLanguage.nornalmassege.trans());
     }
   }
 
@@ -54,11 +55,11 @@ class ServerFailure extends Failure {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return (response['message']);
     } else if (statusCode == 404) {
-      return ServerFailure(StringsManager.state404);
+      return ServerFailure(AppStringsLanguage.state404.trans());
     } else if (statusCode == 500) {
-      return ServerFailure(StringsManager.state500);
+      return ServerFailure(AppStringsLanguage.state500.trans());
     } else {
-      return ServerFailure(StringsManager.nornalmassege);
+      return ServerFailure(AppStringsLanguage.nornalmassege.trans());
     }
   }
 }

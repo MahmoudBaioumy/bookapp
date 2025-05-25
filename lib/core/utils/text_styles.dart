@@ -52,7 +52,7 @@ TextStyle textStyle10({double fontsize = AppSize.s10, required Color color}) {
 
 // -------------------------- 16 -------------------------- //
 TextStyle textStyle16({double fontsize = AppSize.s16, required Color color}) {
-  return _getTextStyle(fontsize, FontWeight.w500, color);
+  return _getTextStyle(fontsize, FontWeight.w600, color,);
 }
 
 TextStyle _getTextStyle(double fontsize, FontWeight fontweight, Color color) {

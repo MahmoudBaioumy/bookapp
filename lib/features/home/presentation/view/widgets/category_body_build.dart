@@ -1,17 +1,33 @@
 import 'package:bookapp/core/utils/colors.dart';
 import 'package:bookapp/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../core/utils/assets_manager.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../core/utils/app_routes.dart';
 import '../../../../../core/utils/value_manager.dart';
+import '../../../data/models/categoires_model/categories_type_model.dart';
 
 class CategoryBodyBuild extends StatelessWidget {
-  const CategoryBodyBuild({super.key});
+  const CategoryBodyBuild({
+    super.key,
+    required this.titel,
+    this.onTap,
+    this.productscategories,
+    this.isLoading = false,
+  });
+
+  factory CategoryBodyBuild.loading({required String titel}) {
+    return CategoryBodyBuild(titel: titel, isLoading: true);
+  }
 
   @override
+  final void Function()? onTap;
+  final String titel;
+  final Productscategories? productscategories;
+  final bool isLoading;
+
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -19,34 +35,31 @@ class CategoryBodyBuild extends StatelessWidget {
             height: 110,
             width: 110,
             decoration: BoxDecoration(
-              color: Colors.grey[500],
+              color: isLoading ? Colors.grey[300] : Colors.grey[500],
               borderRadius: BorderRadius.circular(AppSize.s10),
             ),
           ),
           Container(
-            height: 90,
-            width: 90,
+            height: AppSize.s90,
+            width: AppSize.s90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSize.s10),
-              image: DecorationImage(
-                image: AssetImage(AssetsManager.cross3),
-                fit: BoxFit.fill,
-              ),
             ),
           ),
+          if(!isLoading)
           SizedBox(
-            height: 80,
-            width: 80,
+            height: AppSize.s90,
+            width: AppSize.s90,
             child: Padding(
               padding: const EdgeInsets.only(
                 top: AppSize.s30,
                 left: AppSize.s5,
               ),
               child: Text(
-                'Software',
+                titel,
                 style: textStyle14(
                   color: ColorsManager.white1color,
-                  fontsize: AppSize.s18,
+                  fontsize: AppSize.s20,
                 ),
               ),
             ),

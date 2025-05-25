@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/colors.dart';
-import '../../../../../core/utils/string_manager.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/utils/value_manager.dart';
 
@@ -9,12 +7,12 @@ class ListViewTitleRow extends StatelessWidget {
   const ListViewTitleRow({
     super.key,
     required this.Title,
-    required this.onPressed,
+     this.onPressed,
   });
 
   @override
   final String Title;
-  final Function() onPressed;
+  final Function()? onPressed;
   Widget build(BuildContext context) {
     return Row(
       children: [

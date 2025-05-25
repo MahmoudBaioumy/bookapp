@@ -1,7 +1,13 @@
-import 'package:bookapp/core/utils/string_manager.dart';
+import 'package:bookapp/core/extension/translate.dart';
+import 'package:bookapp/core/utils/app_routes.dart';
+import 'package:bookapp/core/utils/lang/string_language_manager.dart';
 import 'package:bookapp/core/utils/text_styles.dart';
 import 'package:bookapp/core/widgets/custom_text_form_field.dart';
+import 'package:bookapp/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:bookapp/features/auth/presentation/manager/auth_cubit/auth_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/value_manager.dart';
@@ -13,6 +19,12 @@ class containerSinginTextformField extends StatelessWidget {
   final double heigth;
 
   @override
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController name = TextEditingController();
+  final TextEditingController passwordConfirm = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+  final TextEditingController city = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Widget build(BuildContext context) {
@@ -31,11 +43,12 @@ class containerSinginTextformField extends StatelessWidget {
             children: [
               // -------------------------- Name -------------------------- //
               CustomTextFormField(
-                hintText: StringsManager.name,
+                hintText: AppStringsLanguage.name.trans(),
                 prefixIcon: Icons.person,
+                controller: name,
                 validator: (value) {
                   if (value == null) {
-                    return StringsManager.namevalidator;
+                    return AppStringsLanguage.namevalidator.trans();
                   }
                   return null;
                 },
@@ -43,11 +56,12 @@ class containerSinginTextformField extends StatelessWidget {
               SizedBox(height: AppSize.s10),
               // -------------------------- Email --------------------------//
               CustomTextFormField(
-                hintText: StringsManager.username,
+                hintText: AppStringsLanguage.Email.trans(),
+                controller: email,
                 prefixIcon: Icons.person,
                 validator: (value) {
                   if (value == null) {
-                    return StringsManager.emailValidator;
+                    return AppStringsLanguage.emailValidator.trans();
                   }
                   return null;
                 },
@@ -56,15 +70,15 @@ class containerSinginTextformField extends StatelessWidget {
               // -------------------------- Password -------------------------- //
               CustomTextFormField(
                 prefixIcon: Icons.lock,
-                hintText: StringsManager.password,
-                //  controller: ,
+                hintText: AppStringsLanguage.password.trans(),
+                controller: password,
                 isPassword: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return StringsManager.passwordValidator;
+                    return AppStringsLanguage.passwordValidator.trans();
                   }
                   if (value.length < 6) {
-                    return StringsManager.passwordValidator2;
+                    return AppStringsLanguage.passwordValidator2.trans();
                   }
                   return null;
                 },
@@ -73,15 +87,18 @@ class containerSinginTextformField extends StatelessWidget {
               // -------------------------- confirmpassword --------------------------
               CustomTextFormField(
                 prefixIcon: Icons.lock,
-                hintText: StringsManager.confirmpassword,
-                //  controller: ,
+                hintText: AppStringsLanguage.confirmpassword.trans(),
+                controller: passwordConfirm,
                 isPassword: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return StringsManager.passwordValidator;
+                    return AppStringsLanguage.passwordValidator.trans();
                   }
                   if (value.length < 6) {
-                    return StringsManager.passwordValidator2;
+                    return AppStringsLanguage.passwordValidator2.trans();
+                  }
+                  if (password.text != passwordConfirm.text) {
+                    return AppStringsLanguage.passwordConfirm.trans();
                   }
                   return null;
                 },
@@ -91,15 +108,14 @@ class containerSinginTextformField extends StatelessWidget {
               // -------------------------- phone --------------------------
               CustomTextFormField(
                 prefixIcon: Icons.phone,
-                hintText: StringsManager.phone,
-
-                //  controller: ,
+                hintText: AppStringsLanguage.phone.trans(),
+                controller: phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return StringsManager.phonevalidator;
+                    return AppStringsLanguage.phonevalidator.trans();
                   }
                   if (value.length < 11) {
-                    return StringsManager.phonevalidator2;
+                    return AppStringsLanguage.phonevalidator2.trans();
                   }
                   return null;
                 },
@@ -108,11 +124,11 @@ class containerSinginTextformField extends StatelessWidget {
               // -------------------------- city --------------------------
               CustomTextFormField(
                 prefixIcon: Icons.location_city,
-                hintText: StringsManager.city,
-                //  controller: ,
+                hintText: AppStringsLanguage.city.trans(),
+                controller: city,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return StringsManager.cityvalidator;
+                    return AppStringsLanguage.cityvalidator.trans();
                   }
                   return null;
                 },
@@ -120,11 +136,34 @@ class containerSinginTextformField extends StatelessWidget {
               SizedBox(height: 10),
 
               SizedBox(height: AppSize.s40),
-              customElevatedButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) ;
+              BlocConsumer<AuthCubit, AuthStates>(
+                listener: (context, state) {
+                  if (state is RegisterSuccessStates) {
+                    GoRouter.of(context).push(AppRouter.ksignInView);
+                    SnackBar(content: Text('register Success'));
+                  }
+                  if (state is RegisterErrorStates) {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(state.errmassage)));
+                  }
                 },
-                text: StringsManager.Login,
+                builder: (context, state) {
+                  return customElevatedButton(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) ;
+                      AuthCubit.get(context).registeUser(
+                        email: email.text,
+                        name: name.text,
+                        password: password.text,
+                        passwordConfirmation: passwordConfirm.text,
+                        city: city.text,
+                        phone: phone.text,
+                      );
+                    },
+                    text: AppStringsLanguage.SignUp.trans(),
+                  );
+                },
               ),
             ],
           ),

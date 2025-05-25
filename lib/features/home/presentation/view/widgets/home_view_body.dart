@@ -1,27 +1,61 @@
-import 'package:bookapp/core/utils/serves_locator.dart';
-import 'package:bookapp/core/utils/string_manager.dart';
+import 'dart:async';
+import 'package:bookapp/core/extension/internet_checker.dart';
+import 'package:bookapp/core/extension/translate.dart';
+import 'package:bookapp/core/utils/colors.dart';
+import 'package:bookapp/core/utils/lang/string_language_manager.dart';
 import 'package:bookapp/core/utils/value_manager.dart';
 import 'package:bookapp/core/widgets/custom_error_widget.dart';
-import 'package:bookapp/features/home/data/models/new_arrivalls_model.dart/new_arrivals_model/new_arrivals_model.dart';
+import 'package:bookapp/features/home/presentation/manager/all_products_cubit/all_products_cubit.dart';
+import 'package:bookapp/features/home/presentation/manager/all_products_cubit/all_products_state.dart';
 import 'package:bookapp/features/home/presentation/manager/best_seller_cubit/best_seller_cubit.dart';
 import 'package:bookapp/features/home/presentation/manager/best_seller_cubit/best_seller_state.dart';
+import 'package:bookapp/features/home/presentation/manager/categore_cubit/categories_cubit.dart';
+import 'package:bookapp/features/home/presentation/manager/categore_cubit/categories_state.dart';
 import 'package:bookapp/features/home/presentation/manager/new_arrivels_cubit/new_arrvals_cubit.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/utils/app_routes.dart';
-import '../../../../../core/utils/assets_manager.dart';
+import '../../../../../core/utils/serves_locator.dart';
+import '../../../../../core/widgets/custom_colum_Internet_connection_off.dart';
 import '../../../data/repo/home_repo_impl.dart';
-import 'home_list_view_body.dart';
+import 'all_products_list_view_body.dart';
+import 'best_seller_list_view.dart';
 import 'category_body_build.dart';
 import 'home_header_build.dart';
 import 'carousel_slider_build.dart';
 import 'list_view_title_row.dart';
+import 'new_arrivals_list_view.dart';
 
-class homeViewBody extends StatelessWidget {
+class homeViewBody extends StatefulWidget {
   const homeViewBody({super.key});
 
   @override
+  State<homeViewBody> createState() => _homeViewBodyState();
+}
+
+class _homeViewBodyState extends State<homeViewBody> {
+ late AllProductsCubit allProductsCubit =BlocProvider.of<AllProductsCubit>(context);
+
+  @override
+  void initState() {
+    super.initState();
+    NetworkChecker.checkInternetAndExecute(
+      context: context,
+      apiCall: () => allProductsCubit.getAllProducts(
+        RequestTypes.init
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     var heigth = MediaQuery.of(context).size.height;
     var weidth = MediaQuery.of(context).size.width;
@@ -39,8 +73,46 @@ class homeViewBody extends StatelessWidget {
               SizedBox(height: AppSize.s20),
               CarouselSliderBuild(),
               SizedBox(height: AppSize.s16),
+              SizedBox(height: AppSize.s5),
+              // -------------------------- ListView of AllProduct -------------------------- //
               ListViewTitleRow(
-                Title: StringsManager.bestSeller,
+                Title: AppStringsLanguage.allProduct.trans(),
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kallProductView);
+                },
+              ),
+              SizedBox(height: AppSize.s10,),
+              BlocBuilder<AllProductsCubit, AllProductsState>(
+                builder: (context, state) {
+                  if (state is AllProductsSuccessState) {
+                    return SizedBox(
+                      height: heigth * 0.35,
+                      child: ListView.separated(
+                        itemCount:
+                            state.allProdtcusModel.data?.products?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return AllProductsListViewBody(
+                            heigth: heigth,
+                            weidth: weidth,
+                            allProducts: state.allProdtcusModel.data?.products?[index],
+                          );
+                        },
+                        separatorBuilder:
+                            (context, index) => SizedBox(width: AppSize.s14),
+                        scrollDirection: Axis.horizontal,
+                      ),
+                    );
+                  } else if (state is AllProductsFailureState) {
+                        return CustomErrorWidget(errMassage: state.errorMassage);
+                      } else {
+                        return CircularProgressIndicator();
+
+                      }
+                },
+              ),
+              SizedBox(height: AppSize.s10,),
+              ListViewTitleRow(
+                Title: AppStringsLanguage.bestSeller.trans(),
                 onPressed: () {
                   GoRouter.of(context).push(AppRouter.kbestSellerView);
                 },
@@ -53,41 +125,15 @@ class homeViewBody extends StatelessWidget {
                     return SizedBox(
                       height: heigth * 0.35,
                       child: ListView.separated(
+                        itemCount: state.books.data?.products?.length ?? 0,
                         itemBuilder: (context, index) {
-                          return homeListViewBody(
+                          return BestSellerListView(
                             heigth: heigth,
                             weidth: weidth,
-                            image:
-                                state.books[index].data?.products?[index].image??'',
-                            bookName:
-                                state.books[index].data?.products?[index].name??'',
-                            type:
-                                state
-                                    .books[index]
-                                    .data
-                                    ?.products?[index]
-                                    .category??'',
-                            sallaryBeforeDiss:
-                                state.books[index].data?.products?[index].price??'',
-                            sallaryAftarDiss:
-                                state
-                                    .books[index]
-                                    .data
-                                    ?.products?[index]
-                                    .priceAfterDiscount
-                                    .toString()??'',
-                            diss:
-                                state
-                                    .books[index]
-                                    .data
-                                    ?.products?[index]
-                                    .discount
-                                    .toString()??'',
+                            product: state.books.data?.products?[index],
                           );
                         },
-                        separatorBuilder:
-                            (context, index) => SizedBox(width: AppSize.s14),
-                        itemCount: 10,
+                        separatorBuilder: (context, index) => SizedBox(width: AppSize.s14),
                         scrollDirection: Axis.horizontal,
                       ),
                     );
@@ -98,27 +144,64 @@ class homeViewBody extends StatelessWidget {
                   }
                 },
               ),
-              // -------------------------- ListView of category -------------------------- //
-              ListViewTitleRow(
-                Title: StringsManager.category,
-                onPressed: () {},
-              ),
+             // -------------------------- ListView of category -------------------------- //
+              SizedBox(height: AppSize.s10,),
+              ListViewTitleRow(Title: AppStringsLanguage.category.trans()),
               SizedBox(height: AppSize.s8),
               SizedBox(
                 height: heigth * 0.14,
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return CategoryBodyBuild();
+                child: BlocBuilder<CategoriesCubit, CategoriesState>(
+                  builder: (context, state) {
+                    if (state is CategoriesSuccess) {
+                      return ListView.separated(
+                        itemBuilder: (context, index) {
+                          return CategoryBodyBuild(
+                            titel: state.books.data?.categories?[index].name ?? '',
+                            onTap: () {
+                              print(state.books.data?.categories?[index].id);
+                              if (state.books.data?.categories?[index].id != null &&
+                                  state.books.data?.categories?[index].id !=
+                                      0) {
+                                GoRouter.of(context).push(
+                                  AppRouter.kCategoriesView,
+                                  extra: state.books.data?.categories?[index].id,
+                                );
+                              }
+                              else if (state is CategoriesLoading) {
+                                Skeletonizer(
+                                  enabled: true,
+                                  child: ListView.builder(
+                                    itemCount: 6,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return CategoryBodyBuild.loading(titel: '     ');
+                                    },
+                                  ),
+                                );
+                              }
+                              else {
+                                print('Invalid book ID dsadasdasd');
+                              }
+                            },
+                          );
+                        },
+                        separatorBuilder:
+                            (context, index) => SizedBox(width: AppSize.s14),
+                        itemCount: state.books.data?.categories?.length ?? 0,
+                        scrollDirection: Axis.horizontal,
+                      );
+                    } else if (state is CategoriesFailure) {
+                      return CustomErrorWidget(errMassage: state.errmassage);
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
                   },
-                  separatorBuilder:
-                      (context, index) => SizedBox(width: AppSize.s14),
-                  itemCount: 5,
-                  scrollDirection: Axis.horizontal,
                 ),
               ),
-              // -------------------------- ListView of NewArrivals -------------------------- //
+              SizedBox(height: AppSize.s10,),
+            //  -------------------------- ListView of NewArrivals -------------------------- //
               ListViewTitleRow(
-                Title: StringsManager.newArrivals,
+                Title: AppStringsLanguage.newArrivals.trans(),
                 onPressed: () {
                   GoRouter.of(context).push(AppRouter.kNewArrivalsView);
                 },
@@ -131,30 +214,22 @@ class homeViewBody extends StatelessWidget {
                     if (state is NewArrivalsSuccess) {
                       return ListView.separated(
                         itemBuilder: (context, index) {
-                          return homeListViewBody(
+                          return NewArrivalsListView(
                             heigth: heigth,
                             weidth: weidth,
-                            image:
-                                state
-                                    .NewArrivalsbooks[index]
-                                    .data
-                                    ?.products?[index]
-                                    .image,
-                            bookName: 'The Power of Habit',
-                            type: 'Software',
-                            sallaryBeforeDiss: '189.00 LE',
-                            sallaryAftarDiss: '170.00 LE',
-                            diss: '40 %',
+                            product: state.Books.data?.products?[index],
                           );
                         },
                         separatorBuilder:
                             (context, index) => SizedBox(width: AppSize.s14),
-                        itemCount: 10,
+                        itemCount: state.Books.data?.products?.length ?? 0,
                         scrollDirection: Axis.horizontal,
                       );
                     } else if (state is NewArrivalsFailure) {
                       return Center(
-                        child: CustomErrorWidget(errMassage: state.errMessage),
+                        child: CustomErrorWidget(
+                          errMassage: state.errMessage,
+                        ),
                       );
                     } else {
                       return const Center(child: CircularProgressIndicator());

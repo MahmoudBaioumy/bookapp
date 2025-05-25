@@ -1,4 +1,4 @@
-import '../../../data/models/best_seller_model.dart/best_seller_model.dart';
+import '../../../data/models/best_seller_model.dart';
 
 abstract class BestSellerState {}
 
@@ -7,7 +7,7 @@ class BestSellerInitState extends BestSellerState {}
 class BestSellerLoadingState extends BestSellerState {}
 
 class BestSellerSuccessState extends BestSellerState {
-  final List<BestSellerModel> books;
+  final BestSellerModel books;
 
   BestSellerSuccessState(this.books);
 }

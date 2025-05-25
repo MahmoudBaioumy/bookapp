@@ -1,16 +1,39 @@
-# bookapp
+# 📚 BookApp
 
-A new Flutter project.
+BookApp هو تطبيق Flutter بسيط لعرض الكتب، مع تسجيل دخول وتسجيل مستخدم باستخدام Dio و SharedPreferences. التطبيق قائم على هيكلية منظمة باستخدام Repository Pattern، وتم بناؤه بدون أي بيانات هاردكود، وكل شيء يتم تحميله من API.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 صور من التطبيق
 
-A few resources to get you started if this is your first Flutter project:
+> *(يمكنك إضافة الصور لاحقًا داخل مجلد `screenshots` ورفعها في GitHub)*
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+| شاشة تسجيل الدخول | شاشة عرض الكتب |
+|------------------|----------------|
+| ![Login](screenshots/login.png) | ![Books](screenshots/books.png) |
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🛠️ التقنيات والأدوات المستخدمة
+
+- ✅ **Flutter**
+- ✅ **Dio** – للتعامل مع HTTP requests
+- ✅ **SharedPreferences** – لتخزين بيانات المستخدم محليًا
+- ✅ **Repository & Clean Code Structure**
+- ✅ **Navigation و Forms و State Handling**
+
+---
+
+## 🚀 ميزات التطبيق
+
+- تسجيل دخول وتسجيل مستخدم
+- عرض قائمة الكتب
+- عرض تفاصيل كل كتاب
+- حفظ بيانات الدخول محليًا
+- فصل واضح بين UI والـ Logic
+- بدون أي بيانات ثابتة – كل شيء من API
+
+---
+
+## 📂 هيكل المشروع (مبسط)
+

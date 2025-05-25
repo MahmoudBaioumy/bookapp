@@ -12,4 +12,9 @@ class AssetsManager {
   static const cartnav = 'assets/images/shop.svg';
   static const favnav = 'assets/images/favorite.svg';
   static const profilenav = 'assets/images/Profile.svg';
+  // -------------------------- cart -------------------------- //
+
+  static const donePopUp='assets/images/done.png';
+
+
 }
